@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nf start -j Procfile.dev -p 3000",
+    "heroku-postbuild": "cd client && yarn --production=false && yarn run build",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "express": "^4.15.4"
+  },
+  "devDependencies": {
+    "foreman": "^2.0.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.4",
+    "nodemon": "^1.11.0",
+    "prettier": "^1.5.3"
+  }
+}
