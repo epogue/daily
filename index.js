@@ -1,14 +1,16 @@
-const express = require('express');
-const path = require('path');
+import express from "express";
+import path from "path";
+import api from "./routes/api/index";
+import oauth from "./routes/oauth/index";
 
 const app = express();
 
-app.get('/api/test', (req, res) => {
-  res.json({ message: "Hello" });
-});
+app.use("/api", api);
+app.use("/oauth", oauth);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + 'client/build/index.html'));
+// Serve frontend
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "client/build/index.html"));
 });
 
 const port = process.env.PORT || 5000;
